@@ -7,13 +7,15 @@ const ScoreCart = () => {
 
     const handlePlus = () => {
         setCount(prev => prev + 1)
-    }
+
+    };
 
     const handleMinus = () => {
         if (count > 0) {
-            setCount(prev => Math.max(prev - 1, 0))
+            setCount(prev => prev - 1);
         }
     };
+
     return (
         <>
             <div className=" bg-orange-600 w-40 mx-auto rounded-full py-2">

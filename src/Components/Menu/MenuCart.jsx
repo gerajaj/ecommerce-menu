@@ -1,7 +1,8 @@
 import ImageEmptyCart from "/images/illustration-empty-cart.svg"
 
-const MenuCart = ({ selectedProduct }) => {
-    if (!selectedProduct) {
+const MenuCart = ({ cartItems, updateItemQuantity }) => {
+    console.log("Cart items", cartItems)
+    if (cartItems.length === 0) {
         return (
             <div>
                 <div className=" min-h-[200px] w-[300px] bg-white py-2 mt-2 rounded-lg">
@@ -12,26 +13,39 @@ const MenuCart = ({ selectedProduct }) => {
             </div>
         )
     }
+
+    const totalOrder = cartItems.reduce((total, item) => total + item.quantity * item.price, 0).toFixed(2)
+
     return (
         <div>
             <div className=" min-h-[200px] w-[300px] bg-white py-2 mt-2 rounded-lg">
-                <h3 className="ml-3 my-4 font-bold text-orange-700 text-lg">Your Cart (2)</h3>
-                <div className="grid grid-cols-[3fr_1fr]">
-                    <div className="ml-3">
-                        <b>{selectedProduct.name}</b>
-                        <div className="grid grid-cols-[0.6fr_2fr_1fr] justify-start">
-                            <b className="text-orange-600">2x</b>
-                            <span className="">6.50</span>
-                            <span>$13.00</span>
+                <h3 className="ml-3 my-4 font-bold text-orange-700 text-lg">Your Cart ({cartItems.length})</h3>
+                {cartItems.map(item => (
+                    <div key={item.id} className="grid grid-cols-[3fr_1fr]">
+                        <div className="ml-3">
+                            <b>{item.name}</b>
+                            <div className="grid grid-cols-[1.2fr_0.2fr_1fr_1fr] justify-start items-center">
+                                <div className="bg-orange-600 w-[80px] py-1 rounded-full  justify-between flex text-white font-bold items-center">
+                                    <button className="ml-1 border border-white rounded-full w-6 h-6 hover:bg-white hover:text-orange-600"
+                                        onClick={() => item.quantity > 0 && updateItemQuantity(item.id, -1)}
+                                    >-</button>
+                                    <b className="text-white mx-1">{item.quantity}</b>
+                                    <button className="w-6 h-6 mr-1 rounded-full border border-white hover:bg-white hover:text-orange-600"
+                                        onClick={() => updateItemQuantity(item.id, 1)}
+                                    >+</button>
+                                </div>
+                                <b className="text-orange-500 ml-1">x</b>
+                                <span className="ml-1">{item.price.toFixed(2)}</span>
+                                <span className="ml-auto ">{item.quantity * item.price.toFixed(2)}</span>
+                            </div>
                         </div>
+                        <span className="flex items-center justify-center ml-auto mr-4">X</span>
+                        <hr className="my-4 col-span-2 w-[93%] mx-auto" />
                     </div>
-                    <span className="flex items-center justify-center ml-auto mr-4">X</span>
-                    <hr className="my-4 col-span-2 w-[93%] mx-auto" />
-                </div>
-
+                ))}
                 <div className="flex justify-between items-center mx-3">
                     <span>Order Total: </span>
-                    <b>$6.50</b>
+                    <b>${totalOrder}</b>
                 </div>
 
                 <div className="grid items-center justify-center my-4 mx-auto">
