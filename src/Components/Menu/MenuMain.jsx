@@ -55,10 +55,10 @@ const MenuMain = () => {
 
     return (
         <>
-            <div className="font-bold text-4xl">
+            <div className="font-bold text-4xl text-center mb-2 md:mb-0 md:text-left">
                 Desserts
             </div>
-            <div className="grid md:grid-cols-[3fr_1fr] border md:w-[750px] lg:w-[1000px] ">
+            <div className="grid md:grid-cols-[3fr_1fr] border md:w-[750px] lg:w-[1000px]">
                 <MenuCard
                     menuItems={menuItems}
                     /* setSelectedProduct={setSelectedProduct} */

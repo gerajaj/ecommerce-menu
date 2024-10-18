@@ -5,10 +5,10 @@ import backgroundImage from "./assets/wallpaper.webp"
 
 const App = () => {
     return (
-        <div className=" h-full bg-opacity-10 bg-fixed bg-center bg-cover" style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div className=" h-full bg-opacity-10 bg-fixed bg-center bg-cover " style={{ backgroundImage: `url(${backgroundImage})` }}>
             <div className="bg-rose-50 bg-opacity-85">
 
-                <div className="md:w-[750px] lg:w-[1000px] mx-auto pb-4">
+                <div className="md:w-[750px] lg:w-[1000px] w-[300px] mx-auto pb-4">
                     <HeaderMain />
                     <div >
                         <MenuMain className="col-span-3" />
